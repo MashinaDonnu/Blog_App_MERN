@@ -1,0 +1,5 @@
+{
+  "port": "5000",
+  "mongoUri": "mongodb+srv://dima:qwerty12345@cluster0.co2ef.azure.mongodb.net/app?retryWrites=true&w=majority",
+  "secret": "blog on mongo express react node"
+}
