@@ -7,7 +7,6 @@
 .layout {
     display: flex;
     flex-flow: column nowrap;
-    height: 105vh;
 }
 
 .selected {

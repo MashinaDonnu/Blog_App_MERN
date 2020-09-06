@@ -8,6 +8,7 @@ import {Settings} from "./pages/Settings";
 
 export const useRoutes = isAuth => {
     if(isAuth) {
+        document.body.classList.remove('dark')
         return (
             <Switch>
                 <Route path="/posts" component={Home}  />
@@ -18,6 +19,7 @@ export const useRoutes = isAuth => {
             </Switch>
         )
     }
+    document.body.classList.add('dark')
     return (
         <Switch>
             <Route path="/" component={Auth} exact />

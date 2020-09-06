@@ -8,6 +8,7 @@ export const Settings = props => {
     const id = props.match.params.id
     const {token} = useAuth()
     const [userData, setUserData] = useState({name: '', email: '', password: ''})
+    const [show, setShow] = useState(false)
     const {request, loading} = useFetch()
     const {showAlert} = useContext(AlertContext)
 
@@ -42,6 +43,8 @@ export const Settings = props => {
             showAlert('danger', e.message)
         }
     }
+
+    const togglePassword = () => setShow(!show)
 
     if (loading) {
         return <Loader/>
@@ -78,15 +81,21 @@ export const Settings = props => {
                     </div>
                     <div className="form-group">
                         <label htmlFor="password">Password</label>
-                        <input
-                            type="text"
-                            name="password"
-                            className="form-control"
-                            id="password"
-                            placeholder="password"
-                            defaultValue={userData.password}
-                            onChange={changeUserData}
-                        />
+                        <div className="input-group mb-3">
+                            <input
+                                aria-describedby="button-addon2"
+                                type={show ? 'text' : 'password'}
+                                name="password"
+                                className="form-control"
+                                id="password"
+                                placeholder="password"
+                                defaultValue={userData.password}
+                                onChange={changeUserData}
+                            />
+                            <div className="input-group-append">
+                                <button onClick={togglePassword} className="btn btn-outline-primary" type="button" id="button-addon2">{show ? 'Hide' : 'Show'}</button>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <button className="btn btn-dark btn-block" onClick={saveChange}>Save changes</button>
