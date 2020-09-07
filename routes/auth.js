@@ -48,7 +48,7 @@ router.post(
 router.post(
     '/login',
     [
-        check('email').normalizeEmail().isEmail(),
+        check('email').isEmail(),
         check('password').exists()
     ],
     async (req, res) => {
@@ -64,11 +64,18 @@ router.post(
 
 
         const {email, password} = req.body
+        console.log(email)
+
         const user = await User.findOne({email})
+
+
+
 
         if (!user) {
             return res.status(400).json({message:`User email "${email}" not found`})
         }
+
+
 
         const decodePassword = cryptr.decrypt(user.password)
         const validPassword = decodePassword === password
